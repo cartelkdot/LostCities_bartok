@@ -210,13 +210,13 @@ public class Bartok : MonoBehaviour
     // ValidPlay verifies that the card chosen can be played on the discard pile
     public bool ValidPlay(CardBartok cb)
     {
-        // It's a valid play if the rank is the same
-        if (cb.rank == targetCard.rank) return (true);
+        
 
         // It's a valid play if the suit is the same
+        // Check is its a higher rank
         if (cb.suit == targetCard.suit)
         {
-            return (true);
+            if (cb.rank > targetCard.rank) return (true);
         }
 
         // Otherwise, return false
