@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Deck : MonoBehaviour {
 
     [Header("Set in Inspector")]
+
+
     public bool startFaceUp = false;
     // Suits
     public Sprite suitRed;
@@ -151,12 +153,21 @@ public class Deck : MonoBehaviour {
         // cardNames will be the names of cards to build
         // Each suit goes from 1 to 14 (e.g., C1 to C14 for Clubs)
         cardNames = new List<string>();
-        string[] letters = new string[] { "R", "G", "W", "B", "Y" };
+        string[] letters = new string[] { "R" }; // "G", "W", "B", "Y" };
         foreach (string s in letters)
         {
             for (int i=0; i<10; i++)
             {
-                cardNames.Add(s + (i + 1));
+                if (i == 0)
+                {
+                    cardNames.Add(s + (i + 1));
+                    cardNames.Add(s + (i + 1));
+                    cardNames.Add(s + (i + 1));
+                }
+                else
+                {
+                    cardNames.Add(s + (i + 1));
+                }
             }
         }
 

@@ -16,7 +16,7 @@ public enum CBState
     idle
 }
 
-public class CardBartok : Card {
+public class CardBartok : Card, IComparer {
     //Static variables are shared by all instances of CardBartok
     static public float MOVE_DURATION = 0.5f;
     static public string MOVE_EASING = Easing.InOut;
@@ -59,6 +59,19 @@ public class CardBartok : Card {
         timeDuration = MOVE_DURATION;
 
         state = CBState.to;
+    }
+
+     int IComparer.Compare(object x, object y)
+    {
+        CardBartok c1, c2;
+        c1 =(CardBartok)x;
+        c2 = (CardBartok)y;
+
+        if (c1.rank < c2.rank) return -1;
+        if (c1.rank == c2.rank) return 0;
+        return 1;
+
+
     }
 
     public void MoveTo(Vector3 ePos)
