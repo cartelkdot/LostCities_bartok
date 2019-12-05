@@ -37,6 +37,8 @@ public class BartokScoreboardTest : MonoBehaviour
     public CardBartok targetCard;
     public TurnPhase phase = TurnPhase.idle;
 
+    public int computedScore;
+
     private BartokLayout layout;
     private Transform layoutAnchor;
 
@@ -48,7 +50,7 @@ public class BartokScoreboardTest : MonoBehaviour
     private void Start()
     {
         deck = GetComponent<Deck>(); // Get the Deck
-        deck.InitDeck(deckXML.text); // Pass DeckXML to it
+        deck.InitDeck(deckXML.text); // Pass DeckXML to itS
         Deck.Shuffle(ref deck.cards); // This shuffles the deck
 
        // layout = GetComponent<BartokLayout>(); // Get the Layout
@@ -156,6 +158,24 @@ public class BartokScoreboardTest : MonoBehaviour
             testList.Add(testArr[i]);
         }
 
+    }
+
+    public int computeTheScore()
+    {
+        computedScore = 0;
+
+        i = 0;
+        while(testList[i].rank == 1)
+        {
+            multiplier = multiplier + 1 ;
+            i = i + 1;
+        }
+
+        for (int i = 0; i < testList.Count; i++)
+        {
+            computedScore = computedScore + testList[i].rank;
+        }
+        return computedScore;
     }
 
     //public void DrawFirstTarget()
